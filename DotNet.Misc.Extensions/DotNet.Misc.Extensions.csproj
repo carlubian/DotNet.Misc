@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <LangVersion>7.1</LangVersion>
+    <Id>DotNet.Misc.Extensions</Id>
+    <Title>DotNet.Misc.Extensions</Title>
+    <Version>1.2.1</Version>
+    <Authors>carlubian</Authors>
+    <Owners>carlubian</Owners>
+    <Company>carlubian</Company>
+    <PackageReleaseNotes>Add PackageLicenseExpression.</PackageReleaseNotes>
+    <PackageProjectUrl>https://carlubian.visualstudio.com/DotNet.Misc</PackageProjectUrl>
+    <Description>Commonly used utility extension methods.</Description>
+    <RepositoryUrl>https://carlubian.visualstudio.com/DotNet.Misc</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageTags>extensions, dotnet, dotnet-standard, dotnet-misc</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
