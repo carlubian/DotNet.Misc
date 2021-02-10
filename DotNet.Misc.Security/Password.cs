@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DotNet.Misc.Security
 {
@@ -19,6 +17,7 @@ namespace DotNet.Misc.Security
         public void Dispose()
         {
             Safely.Password = Safely.DefaultPassword;
+            GC.SuppressFinalize(this);
         }
     }
 }

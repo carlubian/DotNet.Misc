@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <LangVersion>7.1</LangVersion>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
     <Id>DotNet.Misc.Collections</Id>
     <Title>DotNet.Misc.Collections</Title>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>carlubian</Authors>
     <Owners>carlubian</Owners>
     <Company>carlubian</Company>
-    <PackageReleaseNotes>Add PackageLicenseExpression.</PackageReleaseNotes>
-    <PackageProjectUrl>https://carlubian.visualstudio.com/DotNet.Misc</PackageProjectUrl>
+    <PackageReleaseNotes>General updates.</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/carlubian/DotNet.Misc</PackageProjectUrl>
     <Description>Injects a new class LenientDictionary&lt;TKey, TValue&gt; into the System.Collections.Generic namespace.</Description>
-    <RepositoryUrl>https://carlubian.visualstudio.com/DotNet.Misc</RepositoryUrl>
+    <RepositoryUrl>https://github.com/carlubian/DotNet.Misc</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageTags>collections, dotnet, dotnet-standard, dotnet-misc</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

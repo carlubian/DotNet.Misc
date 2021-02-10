@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DotNet.Misc.Extensions.Linq
 {
@@ -34,7 +33,9 @@ namespace DotNet.Misc.Extensions.Linq
         /// <returns>Sequence</returns>
         public static IEnumerable<T> Peek<T>(this IEnumerable<T> source, Action<T> f)
         {
-            if (source is null || f is null)
+            if (source is null)
+                source = Enumerable.Empty<T>();
+            if (f is null)
                 f = n => { };
 
             foreach (var x in source)
@@ -84,13 +85,10 @@ namespace DotNet.Misc.Extensions.Linq
         /// <param name="function">Element to string converter</param>
         /// <param name="separator">Separator string</param>
         /// <returns>string</returns>
-        public static string Stringify<T>(this IEnumerable<T> source, Func<T, string> function = null, string separator = "")
+        public static string Stringify<T>(this IEnumerable<T> source, Func<T, string>? function = null, string separator = "")
         {
             if (function is null)
-                if (typeof(T).Equals(typeof(string)))
-                    function = e => e as string;
-                else
-                    function = e => e.ToString();
+                function = e => e?.ToString() ?? "";
             if (source is null)
                 return string.Empty;
             if (separator is null)
@@ -110,9 +108,9 @@ namespace DotNet.Misc.Extensions.Linq
         /// <typeparam name="T">Type</typeparam>
         /// <param name="source">Sequence</param>
         /// <returns>Element</returns>
-        public static T Random<T>(this IEnumerable<T> source)
+        public static T? Random<T>(this IEnumerable<T> source)
         {
-            if (source is null)
+            if (source is null || !source.Any())
                 return default;
 
             var rnd = new Random();
@@ -138,7 +136,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <typeparam name="T">Type</typeparam>
         /// <param name="source">Sequence</param>
         /// <returns>Element</returns>
-        public static T SecondOrDefault<T>(this IEnumerable<T> source)
+        public static T? SecondOrDefault<T>(this IEnumerable<T> source)
         {
             return source.Skip(1).FirstOrDefault();
         }
@@ -162,7 +160,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <typeparam name="T">Type</typeparam>
         /// <param name="source">Sequence</param>
         /// <returns>Element</returns>
-        public static T ThirdOrDefault<T>(this IEnumerable<T> source)
+        public static T? ThirdOrDefault<T>(this IEnumerable<T> source)
         {
             return source.Skip(1).SecondOrDefault();
         }
@@ -186,7 +184,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <typeparam name="T">Type</typeparam>
         /// <param name="source">Sequence</param>
         /// <returns>Element</returns>
-        public static T FourthOrDefault<T>(this IEnumerable<T> source)
+        public static T? FourthOrDefault<T>(this IEnumerable<T> source)
         {
             return source.Skip(1).ThirdOrDefault();
         }
@@ -210,7 +208,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <typeparam name="T">Type</typeparam>
         /// <param name="source">Sequence</param>
         /// <returns>Element</returns>
-        public static T FifthOrDefault<T>(this IEnumerable<T> source)
+        public static T? FifthOrDefault<T>(this IEnumerable<T> source)
         {
             return source.Skip(1).FourthOrDefault();
         }

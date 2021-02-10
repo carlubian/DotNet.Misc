@@ -2,16 +2,16 @@
 {
     public class LenientDictionary<TKey, TValue> : IDictionary<TKey, TValue>,
         ICollection<KeyValuePair<TKey, TValue>>,
-        IEnumerable<KeyValuePair<TKey, TValue>>
+        IEnumerable<KeyValuePair<TKey, TValue>> where TKey : notnull
     {
-        private readonly IDictionary<TKey, TValue> source;
+        private readonly IDictionary<TKey, TValue?> source;
 
         public LenientDictionary()
         {
-            source = new Dictionary<TKey, TValue>();
+            source = new Dictionary<TKey, TValue?>();
         }
 
-        public TValue this[TKey key]
+        public TValue? this[TKey key]
         {
             get
             {
@@ -25,7 +25,7 @@
 
         public ICollection<TKey> Keys => source.Keys;
 
-        public ICollection<TValue> Values => source.Values;
+        public ICollection<TValue?> Values => source.Values;
 
         public int Count => source.Count;
 
@@ -39,7 +39,7 @@
                 source.Add(key, value);
         }
 
-        public void Add(KeyValuePair<TKey, TValue> item)
+        public void Add(KeyValuePair<TKey, TValue?> item)
         {
             if (source.ContainsKey(item.Key))
                 source[item.Key] = item.Value;
@@ -49,19 +49,19 @@
 
         public void Clear() => source.Clear();
 
-        public bool Contains(KeyValuePair<TKey, TValue> item) => source.Contains(item);
+        public bool Contains(KeyValuePair<TKey, TValue?> item) => source.Contains(item);
 
         public bool ContainsKey(TKey key) => source.ContainsKey(key);
 
-        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) => source.CopyTo(array, arrayIndex);
+        public void CopyTo(KeyValuePair<TKey, TValue?>[] array, int arrayIndex) => source.CopyTo(array, arrayIndex);
 
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => source.GetEnumerator();
+        public IEnumerator<KeyValuePair<TKey, TValue?>> GetEnumerator() => source.GetEnumerator();
 
         public bool Remove(TKey key) => source.Remove(key);
 
-        public bool Remove(KeyValuePair<TKey, TValue> item) => source.Remove(item);
+        public bool Remove(KeyValuePair<TKey, TValue?> item) => source.Remove(item);
 
-        public bool TryGetValue(TKey key, out TValue value) => source.TryGetValue(key, out value);
+        public bool TryGetValue(TKey key, out TValue? value) => source.TryGetValue(key, out value);
 
         IEnumerator IEnumerable.GetEnumerator() => source.GetEnumerator();
     }
