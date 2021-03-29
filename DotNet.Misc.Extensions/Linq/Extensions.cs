@@ -15,7 +15,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <param name="f">Action</param>
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> f)
         {
-            if (source is null || f is null)
+            if (source is null || !source.Any() || f is null)
                 return;
 
             foreach (var x in source)
@@ -33,7 +33,7 @@ namespace DotNet.Misc.Extensions.Linq
         /// <returns>Sequence</returns>
         public static IEnumerable<T> Peek<T>(this IEnumerable<T> source, Action<T> f)
         {
-            if (source is null)
+            if (source is null || !source.Any())
                 source = Enumerable.Empty<T>();
             if (f is null)
                 f = n => { };
@@ -89,7 +89,7 @@ namespace DotNet.Misc.Extensions.Linq
         {
             if (function is null)
                 function = e => e?.ToString() ?? "";
-            if (source is null)
+            if (source is null || !source.Any())
                 return string.Empty;
             if (separator is null)
                 separator = string.Empty;
