@@ -5,11 +5,11 @@
     <Nullable>enable</Nullable>
     <Id>DotNet.Misc.Extensions</Id>
     <Title>DotNet.Misc.Extensions</Title>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <Authors>carlubian</Authors>
     <Owners>carlubian</Owners>
     <Company>carlubian</Company>
-    <PackageReleaseNotes>General updates.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix for empty enumerables.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/carlubian/DotNet.Misc</PackageProjectUrl>
     <Description>Commonly used utility extension methods.</Description>
     <RepositoryUrl>https://github.com/carlubian/DotNet.Misc</RepositoryUrl>
