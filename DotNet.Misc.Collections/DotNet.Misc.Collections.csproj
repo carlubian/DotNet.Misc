@@ -5,13 +5,13 @@
     <Nullable>enable</Nullable>
     <Id>DotNet.Misc.Collections</Id>
     <Title>DotNet.Misc.Collections</Title>
-    <Version>1.1.0</Version>
+    <Version>1.2.1</Version>
     <Authors>carlubian</Authors>
     <Owners>carlubian</Owners>
     <Company>carlubian</Company>
-    <PackageReleaseNotes>General updates.</PackageReleaseNotes>
+    <PackageReleaseNotes>Improvements to code structure.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/carlubian/DotNet.Misc</PackageProjectUrl>
-    <Description>Injects a new class LenientDictionary&lt;TKey, TValue&gt; into the System.Collections.Generic namespace.</Description>
+    <Description>Injects new collection classes to the standard system namespace.</Description>
     <RepositoryUrl>https://github.com/carlubian/DotNet.Misc</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageTags>collections, dotnet, dotnet-standard, dotnet-misc</PackageTags>
