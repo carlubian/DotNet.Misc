@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
-    <Nullable>enable</Nullable>
+	<TargetFrameworks>net5.0; net6.0</TargetFrameworks>
+	<Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<ImplicitUsings>enable</ImplicitUsings>
     <Id>DotNet.Misc.Security</Id>
     <Title>DotNet.Misc.Security</Title>
     <Version>1.1.0</Version>

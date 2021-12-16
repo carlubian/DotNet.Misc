@@ -34,7 +34,7 @@ namespace DotNet.Misc.Extensions.Test
         public void TestPeek()
         {
             var list = new[] { 1, 2, 3, 4, 5 };
-            IList<int> result = null;
+            IList<int> result = Array.Empty<int>();
             var sum = 0;
 
             Action act = () => result = list.Peek(n => sum += n).ToList();
@@ -47,7 +47,7 @@ namespace DotNet.Misc.Extensions.Test
         public void TestPeekNull()
         {
             var list = new[] { 1, 2, 3, 4, 5 };
-            IList<int> result = null;
+            IList<int> result = Array.Empty<int>();
 
             Action act = () => result = list.Peek(null).ToList();
             act.Should().NotThrow();
@@ -110,7 +110,7 @@ namespace DotNet.Misc.Extensions.Test
         {
             IEnumerable<int> foo = null;
 
-            foo.Stringify(n => n.ToString()).Should().Be("");
+            foo.Stringify(n => n.ToString()).Should().Be(string.Empty);
 
             foo = new[] { 1, 2, 3, 4, 5 };
 
@@ -155,11 +155,8 @@ namespace DotNet.Misc.Extensions.Test
             act = () => n2 = source.Random();
             act.Should().NotThrow();
 
-            // Randomness is non-deterministic
-            if (n1.Equals(n2))
-                n2 = source.Random();
-
-            n1.Should().NotBe(n2);
+            n1.Enumerate().Should().BeSubsetOf(source);
+            n2.Enumerate().Should().BeSubsetOf(source);
         }
 
         [TestMethod]
@@ -179,7 +176,7 @@ namespace DotNet.Misc.Extensions.Test
         [TestMethod]
         public void TestRandomEmpty()
         {
-            var source = new int[] { };
+            var source = Array.Empty<int>();
             int n1 = -1, n2 = -1;
 
             Action act = () => n1 = source.Random();
@@ -187,7 +184,7 @@ namespace DotNet.Misc.Extensions.Test
             act = () => n2 = source.Random();
             act.Should().NotThrow();
 
-            n1.Should().Be(default(int));
+            n1.Should().Be(default);
             n1.Should().Be(n2);
         }
 
@@ -200,7 +197,7 @@ namespace DotNet.Misc.Extensions.Test
             Action act = () => n1 = source.Random();
             act.Should().NotThrow();
 
-            n1.Should().Be(default(int));
+            n1.Should().Be(default);
         }
 
         [TestMethod]

@@ -1,23 +1,20 @@
-﻿using System;
+﻿namespace DotNet.Misc.Security;
 
-namespace DotNet.Misc.Security
+/// <summary>
+/// Allows the user to change the password used
+/// by DotNet.Misc.Security to encrypt and
+/// decrypt files.
+/// </summary>
+public class Password : IDisposable
 {
-    /// <summary>
-    /// Allows the user to change the password used
-    /// by DotNet.Misc.Security to encrypt and
-    /// decrypt files.
-    /// </summary>
-    public class Password : IDisposable
+    public Password(string password)
     {
-        public Password(string password)
-        {
-            Safely.Password = password;
-        }
+        Safely.Password = password;
+    }
 
-        public void Dispose()
-        {
-            Safely.Password = Safely.DefaultPassword;
-            GC.SuppressFinalize(this);
-        }
+    public void Dispose()
+    {
+        Safely.Password = Safely.DefaultPassword;
+        GC.SuppressFinalize(this);
     }
 }

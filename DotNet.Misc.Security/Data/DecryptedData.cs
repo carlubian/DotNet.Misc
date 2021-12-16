@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace DotNet.Misc.Security.Data;
 
-namespace DotNet.Misc.Security.Data
+/// <summary>
+/// Represents a piece of data decrypted
+/// by DotNet.Misc.Security
+/// </summary>
+public struct DecryptedData
 {
     /// <summary>
-    /// Represents a piece of data decrypted
-    /// by DotNet.Misc.Security
+    /// Gets the decrypted data as a string.
     /// </summary>
-    public struct DecryptedData
+    public string Data { get; internal set; }
+
+    internal DecryptedData(string data)
     {
-        /// <summary>
-        /// Gets the decrypted data as a string.
-        /// </summary>
-        public string Data { get; internal set; }
-
-        internal DecryptedData(string data)
-        {
-            Data = data;
-        }
-
-        public override string ToString() => "DotNet.Misc.Security Decrypted Data";
-        public override int GetHashCode() => Data.GetHashCode();
-        public override bool Equals(object obj) => Data.GetHashCode().Equals(obj.GetHashCode());
+        Data = data;
     }
+
+    public override string ToString() => "DotNet.Misc.Security Decrypted Data";
+    public override int GetHashCode() => Data.GetHashCode();
+    public override bool Equals(object? obj) => Data.GetHashCode().Equals(obj?.GetHashCode());
+
+    public static bool operator ==(DecryptedData left, DecryptedData right) => left.Equals(right);
+
+    public static bool operator !=(DecryptedData left, DecryptedData right) => !(left == right);
 }

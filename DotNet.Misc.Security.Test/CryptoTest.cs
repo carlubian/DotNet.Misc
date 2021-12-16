@@ -23,7 +23,7 @@ namespace DotNet.Misc.Security.Test
             ddata.Data.Should().Be(str);
 
             // Extract
-            var res = ddata.As(out string str2);
+            var res = ddata.As(out string? str2);
 
             res.Should().BeTrue();
             str2.Should().Be(str);
@@ -111,7 +111,7 @@ namespace DotNet.Misc.Security.Test
             ddata.Data.Should().Be(person.Serialize());
 
             // Extract
-            var res = ddata.As(out Person person2);
+            var res = ddata.As(out Person? person2);
 
             res.Should().BeTrue();
             person2.Should().Be(person);
@@ -132,7 +132,7 @@ namespace DotNet.Misc.Security.Test
             ddata.Data.Should().Be(str);
 
             // Extract
-            var res = ddata.As(out string str2);
+            var res = ddata.As(out string? str2);
 
             res.Should().BeTrue();
             str2.Should().Be(str);

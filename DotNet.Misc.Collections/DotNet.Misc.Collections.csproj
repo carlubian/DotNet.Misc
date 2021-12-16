@@ -1,15 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0; net6.0</TargetFrameworks>
     <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<ImplicitUsings>enable</ImplicitUsings>
     <Id>DotNet.Misc.Collections</Id>
     <Title>DotNet.Misc.Collections</Title>
-    <Version>1.2.1</Version>
+    <Version>2.0.0</Version>
     <Authors>carlubian</Authors>
     <Owners>carlubian</Owners>
     <Company>carlubian</Company>
-    <PackageReleaseNotes>Improvements to code structure.</PackageReleaseNotes>
+    <PackageReleaseNotes>Code enhancements.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/carlubian/DotNet.Misc</PackageProjectUrl>
     <Description>Injects new collection classes to the standard system namespace.</Description>
     <RepositoryUrl>https://github.com/carlubian/DotNet.Misc</RepositoryUrl>

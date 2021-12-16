@@ -1,53 +1,52 @@
 ﻿using System.Collections.Specialized;
 
-namespace System.Collections.Concurrent
+namespace System.Collections.Concurrent;
+
+public class ObservableConcurrentQueue<T> : ConcurrentQueue<T>, INotifyCollectionChanged
 {
-    public class ObservableConcurrentQueue<T> : ConcurrentQueue<T>, INotifyCollectionChanged
+    public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+    public event NotifyCollectionChangedEventHandler? ItemEnqueued;
+
+    public event NotifyCollectionChangedEventHandler? ItemDequeued;
+
+    public new void Enqueue(T item)
     {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        base.Enqueue(item);
+        OnItemEnqueued(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
+    }
 
-        public event NotifyCollectionChangedEventHandler? ItemEnqueued;
+    public new bool TryDequeue(out T? result)
+    {
+        var flag = base.TryDequeue(out result);
 
-        public event NotifyCollectionChangedEventHandler? ItemDequeued;
+        OnItemDequeued(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, result));
+        return flag;
+    }
 
-        public new void Enqueue(T item)
-        {
-            base.Enqueue(item);
-            OnItemEnqueued(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
-        }
+    internal void OnItemEnqueued(NotifyCollectionChangedEventArgs e)
+    {
+        OnCollectionChanged(e);
+        if (ItemEnqueued is null)
+            return;
 
-        public new bool TryDequeue(out T? result)
-        {
-            var flag = base.TryDequeue(out result);
+        ItemEnqueued(this, e);
+    }
 
-            OnItemDequeued(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, result));
-            return flag;
-        }
+    internal void OnItemDequeued(NotifyCollectionChangedEventArgs e)
+    {
+        OnCollectionChanged(e);
+        if (ItemDequeued is null)
+            return;
 
-        internal void OnItemEnqueued(NotifyCollectionChangedEventArgs e)
-        {
-            OnCollectionChanged(e);
-            if (ItemEnqueued is null)
-                return;
+        ItemDequeued(this, e);
+    }
 
-            ItemEnqueued(this, e);
-        }
+    internal void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+    {
+        if (CollectionChanged is null)
+            return;
 
-        internal void OnItemDequeued(NotifyCollectionChangedEventArgs e)
-        {
-            OnCollectionChanged(e);
-            if (ItemDequeued is null)
-                return;
-
-            ItemDequeued(this, e);
-        }
-
-        internal void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            if (CollectionChanged is null)
-                return;
-
-            CollectionChanged(this, e);
-        }
+        CollectionChanged(this, e);
     }
 }
